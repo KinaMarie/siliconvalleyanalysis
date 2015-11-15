@@ -44,7 +44,7 @@ edge_list.loc[:, "invest_date"] = df["funded_at"].apply(format_date)
 
 #------Checkpoint 1-----------------------------
 # For convenience, we save the full set of edges
-edge_list.to_csv(checkpoint1, index=False, header=False)
+edge_list.to_csv(checkpoint1, index=False)
 #-----------------------------------------------
 
 # Keep only investments that occured post 2005
