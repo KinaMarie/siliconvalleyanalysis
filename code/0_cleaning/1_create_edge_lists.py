@@ -36,7 +36,7 @@ edge_list = df[["investor_permalink", "company_permalink"]]
 
 # Process Meta Information
 edge_list.loc[:, "raised_amount_usd"] = df["raised_amount_usd"].apply(format_raised)
-edge_list.loc[:, "invest_date"] = df["funded_at"].apply(format_date)
+edge_list.loc[:, "invest_date"] = df.loc[:,"funded_at"].apply(format_date)
 
 # ADD ADDITIONAL DATA HERE
 # If we wanted to add additional meta-information, we can just continue to build
@@ -49,6 +49,7 @@ edge_list.to_csv(checkpoint1, index=False)
 
 # Keep only investments that occured post 2005
 post_2005_edges = edge_list[edge_list["invest_date"] > dt.datetime(2004,12,31)]
+post_2005_edges = post_2005_edges.dropna() # Drop missing companies/investors
 post_2005_edges.to_csv("post_2005_edges.csv", index=False, header=False)
 
 
